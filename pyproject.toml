@@ -36,6 +36,12 @@ spinner = "cli.main:cli"
 where = ["spinner"]
 include = ["*"]
 
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.data-files]
+"spinner" = ["spinner/exporter/reporter.ipynb"]
+
 [tool.isort]
 profile = "black"
 line_length = 79

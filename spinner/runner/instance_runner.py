@@ -74,10 +74,6 @@ class InstanceRunner:
             )
             rprint(f"rendered command: {command}")
 
-            # check if the command exists
-            if shutil.which(command.split()[0]) is None:
-                raise FileNotFoundError(f"Command {command.split()[0]} does not exist")
-
             instructions.append(
                 {
                     "cmd": command,

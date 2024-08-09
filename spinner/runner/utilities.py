@@ -19,10 +19,6 @@ def run_benchmarks(config, hosts):
     bench_metadata = bench_config["metadata"]
     bench_metadata["start_timestamp"] = str(pd.Timestamp.now())
 
-    input_file = bench_metadata["input_file"]
-    input_file_size = os.path.getsize(input_file)
-
-    bench_metadata["input_file_size"] = input_file_size
     bench_metadata["hosts"] = hosts
     bench_metadata["runner_hostname"] = str(os.uname()[1])
     bench_metadata["start_env"] = str(os.environ.copy())
