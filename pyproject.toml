@@ -27,7 +27,8 @@ dev = [
     "black==24.4.2",
     "black[jupyter]==24.4.2",
     "isort==5.13.2",
-    "taskipy==1.13.0"
+    "taskipy==1.13.0",
+    "pytest",
 ]
 
 [project.scripts]
@@ -50,3 +51,8 @@ line_length = 79
 [tool.taskipy.tasks]
 lint = "black --check --diff . && isort --check --diff ."
 format = "black . && isort ."
+
+[tool.pytest.ini_options]
+pythonpath = [
+    ".",
+]
