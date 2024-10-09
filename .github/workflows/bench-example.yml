@@ -27,13 +27,16 @@ jobs:
         python -m pip install ".[dev]"
     - name: Basic benchmark test
       run: |
-         spinner -c docs/examples/sleep_benchmark.yaml -r T -e F
+         spinner -c docs/examples/sleep_benchmark.yaml -r
     - name: Timeout test
       run: |
-         spinner -c docs/examples/timeout_test.yaml -r T -e F
+         spinner -c docs/examples/timeout_test.yaml -r
+    - name: Extra Args test
+      run: |
+         spinner -c docs/examples/extra_args.yaml -r --extra-args "extra_time=4"
     - name: Capture output test
       run: |
-         spinner -c docs/examples/capture_output.yaml -r T -e T
+         spinner -c docs/examples/capture_output.yaml -r -e
     - name: upload produced graphs
       uses: actions/upload-artifact@v4
       with:

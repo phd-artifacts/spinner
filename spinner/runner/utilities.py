@@ -10,15 +10,14 @@ from rich.progress import Progress
 from runner.instance_runner import InstanceRunner
 
 
-def run_benchmarks(config, hosts):
+def run_benchmarks(config, output, extra_args):
     """
     Generate execution matrix from input configuration and run all benchmarks.
     """
     bench_config = yaml.safe_load(open(config))
     bench_metadata = bench_config["metadata"]
     bench_metadata["start_timestamp"] = str(pd.Timestamp.now())
-
-    bench_metadata["hosts"] = hosts
+    bench_metadata.update(extra_args)
     bench_metadata["runner_hostname"] = str(os.uname()[1])
     bench_metadata["start_env"] = str(os.environ.copy())
 
@@ -96,5 +95,5 @@ def run_benchmarks(config, hosts):
     bench_metadata["end_env"] = str(os.environ.copy())
 
     rprint(execution_df)
-    with open("bench_metadata.pkl", "wb") as f:
+    with open(output, "wb") as f:
         pickle.dump({"metadata": bench_metadata, "dataframe": execution_df}, f)
